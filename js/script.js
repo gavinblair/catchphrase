@@ -187,6 +187,7 @@ function newword(){
 		data: "q="+$("#drpCategory").val(),
 		type: 'post',
 		success: function(msg){
+			//this causes an infinite loop :(
 			if(msg != $("#theword").text()){
 				$("#theword").text(msg);
 			} else {
