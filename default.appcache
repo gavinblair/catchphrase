@@ -10,6 +10,12 @@ css/style.css
 js/libs/jquery-1.5.1.min.js
 js/libs/modernizr-custom.js
 js/libs/respond.min.js
+js/script.js
+media/words.txt
+media/clock/buzzer.mp3
+media/clock/fast.mp3
+media/clock/medium.mp3
+media/clock/slow.mp3
 
 NETWORK:
 #http://example.com/api/
