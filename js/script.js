@@ -2,7 +2,39 @@ var timer;
 var second = 0;
 var timelimit = 0;
 var loaded = false;
+var words = new Array();
 $(document).ready(function(){
+
+	//get words
+	var txtFile = new XMLHttpRequest();
+	txtFile.open("GET", "media/words.txt", true);
+	txtFile.onreadystatechange = function() {
+	  if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
+		if (txtFile.status === 200) {  // Makes sure it's found the file.
+		  allText = txtFile.responseText; 
+		  lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+		  var cat;
+		  var numcats = 0;
+		  $("#drpCategory").append("<option value='0'>Everything</option>");
+		  $.each(lines, function(k, v) {
+			if(v.substring(0,1) == "#") {
+				//category
+				cat = v.substring(1);
+				numcats++;
+				$("#drpCategory").append("<option value='"+numcats+"'>"+cat+"</option>");
+			} else {
+				//word
+				if(words[numcats] === undefined) {
+					words[numcats] = new Array();
+				}
+				words[numcats].push(v);
+				words[numcats].sort(function(){ return (Math.round(Math.random())-0.5); });
+			}
+		  });
+		}
+	  }
+	}
+	txtFile.send(null);
 
 	//choose a random time limit
 	randomtimelimit();
@@ -30,7 +62,6 @@ $(document).ready(function(){
 		$("#game").removeClass("hidden");
 	});
 	$("#btnSettings").click(function(){
-		if($("#drpCategory option").length == 0) { getcategories(); }
 		$(".page").addClass("hidden");
 		$("#settings").removeClass("hidden");
 	});
@@ -168,30 +199,18 @@ function randomtimelimit(){
 	}
 }
 
-function getcategories(){
-	$.ajax({
-		url: "words.php",
-		dataType: 'json',
-		success: function(msg){
-			$("#drpCategory option").remove();
-			$.each(msg, function(k, v) {
-				$("#drpCategory").append("<option value='"+k+"'>"+v+"</option>");
-			});
-		}
-	});
-}
-
 function newword(){
-	$.ajax({
-		url: "words.php",
-		data: "q="+$("#drpCategory").val(),
-		type: 'post',
-		success: function(msg){
-			if(msg != $("#theword").text()){
-				$("#theword").text(msg);
-			} else {
-				newword();
-			}
+	if($("#drpCategory").val() != "0" && $("#drpCategory").val() != "") {
+		//category
+		words[$("#drpCategory").val()].sort(function(){ return (Math.round(Math.random())-0.5); });
+		$("#theword").text(words[$("#drpCategory").val()][0]);
+	} else {
+		//everything
+		randomcat = 0;
+		while(randomcat == 0) {
+			randomcat = Math.floor(Math.random()*words.length);
 		}
-	});
+		words[randomcat].sort(function(){ return (Math.round(Math.random())-0.5); });
+		$("#theword").text(words[randomcat][0]);
+	}
 }	

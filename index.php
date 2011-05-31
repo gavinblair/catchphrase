@@ -2,7 +2,7 @@
 <!-- Conditional comment for mobile ie7 http://blogs.msdn.com/b/iemobile/ -->
 <!-- Appcache Facts http://appcachefacts.info/ -->
 <!--[if IEMobile 7 ]>    <html class="no-js iem7" manifest="default.appcache?v=1"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--manifest="default.appcache?v=1"--> <!--<![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" manifest="default.appcache?v=1"> <!--<![endif]-->
 
 <head>
   <meta charset="utf-8">
@@ -15,7 +15,7 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  
   <meta name="apple-touch-fullscreen" content="yes" />
   
   <!-- Home screen icon  Mathias Bynens http://goo.gl/6nVq0 -->
@@ -29,9 +29,9 @@
   <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
   
   <!--iOS web app, deletable if not needed -->
-  <!--<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-startup-image" href="img/l/splash.png">-->
+  <link rel="apple-touch-startup-image" href="img/l/splash.png">
   
   <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
   <meta http-equiv="cleartype" content="on">
@@ -75,7 +75,7 @@
 		<label for="drpTime">Time Limit</label>
 		<select id="drpTime">
 			<option>Random</option>
-			<option value="15">/**/15 Seconds</option>
+			<!--option value="15">/**/15 Seconds</option-->
 			<option value="30">30 Seconds</option>
 			<option value="60">1 Minute</option>
 			<option value="90">1 Minute 30 Seconds</option>
