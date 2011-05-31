@@ -3,7 +3,7 @@
 if($_POST && $_POST['q']) {
 	$word = "";
 	$text = file_get_contents("media/words.txt");
-	if($_POST['q'] != "Everything" && $_POST['q'] != "null" && $_POST['q'] != 0) {
+	if($_POST['q'] != "Everything" && $_POST['q'] != "null" && $_POST['q'] != "0") {
 		//category
 		$parts = explode("#".$_POST['q']."\n", $text);
 		$text = $parts[1];
